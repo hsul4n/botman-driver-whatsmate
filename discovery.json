@@ -1,0 +1,8 @@
+{
+    "botman/driver-config": [
+        "stubs/whatsmate.php"
+    ],
+    "botman/driver": [
+        "BotMan\\Drivers\\Whatsmate\\WhatsmateDriver"
+    ]
+}

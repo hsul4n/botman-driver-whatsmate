@@ -1,0 +1,51 @@
+{
+    "name": "7uthaifah/botman/driver-whatsmate",
+    "license": "MIT",
+    "description": "Whatsmate driver for BotMan",
+    "keywords": [
+        "Bot",
+        "BotMan",
+        "WhatsApp",
+        "Whatsmate"
+    ],
+    "homepage": "http://github.com/7uthaifah/botman-driver-whatsmate",
+    "authors": [
+        {
+            "name": "Huthaifah Mustafa",
+            "email": "7uthaifah@pcsoftgroup.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0",
+        "botman/botman": "~2.0"
+    },
+    "require-dev": {
+        "botman/studio-addons": "~1.0",
+        "illuminate/contracts": "~5.5.0",
+        "phpunit/phpunit": "~5.0",
+        "mockery/mockery": "dev-master",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "BotMan\\Drivers\\Whatsmate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "cs": "php-cs-fixer fix"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BotMan\\Drivers\\Whatsmate\\Providers\\WhatsmateServiceProvider"
+            ]
+        }
+    }
+}
