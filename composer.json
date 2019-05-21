@@ -1,5 +1,5 @@
 {
-    "name": "7uthaifah/botman/driver-whatsmate",
+    "name": "huthaifah/botman/driver-whatsmate",
     "license": "MIT",
     "description": "Whatsmate driver for BotMan",
     "keywords": [
@@ -12,7 +12,7 @@
     "authors": [
         {
             "name": "Huthaifah Mustafa",
-            "email": "7uthaifah@pcsoftgroup.com"
+            "email": "7uthaifah.mustafa@gmail.com"
         }
     ],
     "minimum-stability": "stable",
