@@ -123,6 +123,26 @@ class WhatsmateDriver extends HttpDriver
     }
 
     /**
+     * Convert a Question object into a valid message
+     *
+     *
+     * @param \BotMan\BotMan\Messages\Outgoing\Question $question
+     * @return array
+     */
+    private function convertQuestion(Question $question)
+    {
+        $buttons = $question->getButtons();
+        if ($buttons) {
+            $options =  Collection::make($buttons)->transform(function ($button) {
+                return 'Enter: ' . $button['value']. ' for -> '.$button['text'];
+            })->toArray();
+
+            return $question->getText() . "\n" . implode(",\n", $options);
+        }
+    }
+
+
+    /**
      * @param OutgoingMessage|\BotMan\BotMan\Messages\Outgoing\Question $message
      * @param \BotMan\BotMan\Messages\Incoming\IncomingMessage $matchingMessage
      * @param array $additionalParameters
@@ -176,7 +196,8 @@ class WhatsmateDriver extends HttpDriver
             }
             
         } elseif ($message instanceof Question) {
-            throw new WhatsmateException('Whatsmate question not support!');
+            $payload['type'] = $matchingMessage->getPayload()['type'];
+            $payload['message'] = $this->convertQuestion($message);
         }
 
         return $payload;
