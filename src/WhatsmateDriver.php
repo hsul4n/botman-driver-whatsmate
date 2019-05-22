@@ -81,7 +81,7 @@ class WhatsmateDriver extends HttpDriver
         //     $incomingMessage = new IncomingMessage($message['message'], $message['gateway_number'], $message['number'], $message);
         // }
 
-        $incomingMessage = new IncomingMessage($message['message'], $message['gateway_number'], $message['number'], $message);
+        $incomingMessage = new IncomingMessage($message['message'], $message['number'], $message['gateway_number'], $message);
 
         return [$incomingMessage];
     }
@@ -109,7 +109,7 @@ class WhatsmateDriver extends HttpDriver
      */
     public function getUser(IncomingMessage $matchingMessage)
     {
-        return new User($matchingMessage->getSender(), null, null, $matchingMessage->getSender());
+        return new User($matchingMessage->getSender(), null, null, $matchingMessage->getRecipient());
     }
 
 
@@ -132,7 +132,7 @@ class WhatsmateDriver extends HttpDriver
     public function buildServicePayload($message, $matchingMessage, $additionalParameters = [])
     {
         $payload = [
-            'number' => $matchingMessage->getRecipient(),
+            'number' => $matchingMessage->getSender(),
         ];
 
         // No question, image or file attach till now
