@@ -203,11 +203,6 @@ class WhatsmateDriver extends HttpDriver
         return $payload;
     }
 
-    // protected function getRequestCredentials()
-    // {
-    //     return ['number' => $this->config->get('token')];
-    // }
-
     /**
      * @param mixed $payload
      * @return Response
@@ -249,19 +244,13 @@ class WhatsmateDriver extends HttpDriver
                 throw new WhatsmateException('Whatsmate ' . $payload['type'] .' type not support!');
         }
 
-        return $this->http->post(self::API_BASE_URL . $endpoint . '/' . $this->config->get('instance_id'), 
-            // Empty url params
-            [],
-            // No credentials to merge with whatsmate request
-            // array_merge($payload, $this->getRequestCredentials()),
-            $payload,
-            [
-                'Accept: application/json',
-                'Content-Type: application/json',
-                'X-WM-CLIENT-ID: ' . $this->config->get('client_id'),
-                'X-WM-CLIENT-SECRET: ' . $this->config->get('client_secret'), 
-            ],
-            true);
+        return $this->http->post(self::API_BASE_URL . $endpoint . '/' . $this->config->get('instance_id'), [],$payload, [
+            'Accept: application/json',
+            'Content-Type: application/json',
+            "X-WM-CLIENT-ID: {$this->config->get('client_id')}",
+            "X-WM-CLIENT-SECRET: {$this->config->get('client_secret')}",
+        ],
+        true);
     }
 
     /**
